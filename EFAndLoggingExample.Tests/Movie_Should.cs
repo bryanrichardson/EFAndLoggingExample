@@ -1,23 +1,25 @@
-﻿using NUnit.Framework;
+﻿using System.Data.Entity;
+using System.Linq;
+using EFAndLoggingExample.Models;
+using NUnit.Framework;
 
 namespace EFAndLoggingExample.Tests
 {
     [TestFixture]
     public class Movie_Should
     {
+        [Test]
         public void Create_A_Movie()
         {
             var db = new MovieContext();
 
-            Movie movie = new Movie() {Name = "Star Wars"};
+            var movie = new Movie() {Name = "Star Wars"};
             db.Movies.Add(movie);
             db.SaveChanges();
 
-            var query = from m in db.Movies
-                where m.Name == "Star Wars"
-                select m;
+            var query = db.Movies.Where(m => m.Name == "Star Wars");
 
-            Assert.AreEqual(1,query.count());
+            Assert.AreEqual(1,query.Count());
         }
     }
 }
