@@ -22,12 +22,21 @@ namespace EFAndLoggingExample.Repositories
 
         public void InsertMovie(string name)
         {
-            throw new NotImplementedException();
+            _context.Movies.Add(new Movie() {Name = name});
+            _context.SaveChanges();
+            _log.InfoFormat("Movie with name {0} created!", name);
         }
 
         public void UpdateMovie(Movie movie)
         {
-            throw new NotImplementedException();
+            var movieToEdit = _context.Movies.Find(movie.Id);
+            if (movieToEdit != null)
+            {
+                string oldName = movieToEdit.Name;
+                movieToEdit.Name = movie.Name;
+                _log.InfoFormat("Movie with id {0} updated name from {1} to {2}!", movie.Id, oldName, movie.Name);
+                _context.SaveChanges();
+            }
         }
 
         public void DeleteMovie(int id)
