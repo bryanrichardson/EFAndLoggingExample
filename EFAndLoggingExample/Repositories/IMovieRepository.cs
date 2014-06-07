@@ -12,6 +12,5 @@ namespace EFAndLoggingExample.Repositories
         void InsertMovie(string name);
         void UpdateMovie(Movie movie);
         void DeleteMovie(int id);
-        void Save();
     }
 }

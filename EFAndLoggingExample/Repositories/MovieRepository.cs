@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using EFAndLoggingExample.Mail;
 using EFAndLoggingExample.Models;
 using log4net;
 
@@ -9,15 +11,20 @@ namespace EFAndLoggingExample.Repositories
     {
         private MovieContext _context;
         private ILog _log;
-        public MovieRepository(MovieContext ctx, ILog log)
+        private readonly IMailer _mailer;
+
+        public MovieRepository(MovieContext ctx, ILog log, IMailer mailer)
         {
             _context = ctx;
             _log = log;
+            _mailer = mailer;
         }
 
         public IEnumerable<Movie> GetMovieByName(string name)
         {
-            throw new NotImplementedException();
+            var movies = _context.Movies.Where(x => x.Name == name);
+            _log.InfoFormat("Query for movies with a name of {0} returned a count of {1}", name, movies.Count());
+            return movies;
         }
 
         public void InsertMovie(string name)
@@ -34,19 +41,21 @@ namespace EFAndLoggingExample.Repositories
             {
                 string oldName = movieToEdit.Name;
                 movieToEdit.Name = movie.Name;
-                _log.InfoFormat("Movie with id {0} updated name from {1} to {2}!", movie.Id, oldName, movie.Name);
                 _context.SaveChanges();
+                _log.InfoFormat("Movie with id {0} updated name from {1} to {2}!", movie.Id, oldName, movie.Name);
             }
         }
 
         public void DeleteMovie(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Save()
-        {
-            throw new NotImplementedException();
+            var movieToDelete = _context.Movies.Find(id);
+            if (movieToDelete != null)
+            {
+                _context.Movies.Remove(movieToDelete);
+                _context.SaveChanges();
+                _log.InfoFormat("Movie with id {0} and name {1} was deleted!", movieToDelete.Id, movieToDelete.Name);
+                _mailer.SendEmail("from@someplace.com", "to@someotherplace.com", string.Format("Movie with name {0} was deleted!", movieToDelete.Name));
+            }
         }
     }
 }
