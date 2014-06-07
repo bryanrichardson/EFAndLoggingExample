@@ -10,7 +10,7 @@ namespace EFAndLoggingExample.Repositories
     {
         IEnumerable<Movie> GetMovies();
         IEnumerable<Movie> GetMovieByName(string name);
-        int InsertMovie(string name);
+        void InsertMovie(string name);
         void UpdateMovie(Movie movie);
         void DeleteMovie(int id);
     }

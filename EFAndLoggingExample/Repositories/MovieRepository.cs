@@ -34,14 +34,11 @@ namespace EFAndLoggingExample.Repositories
             return movies;
         }
 
-        public int InsertMovie(string name)
+        public void InsertMovie(string name)
         {
             _context.Movies.Add(new Movie() {Name = name});
             _context.SaveChanges();
             _log.InfoFormat("Movie with name {0} created!", name);
-
-            var movie = _context.Movies.Where(x => x.Name==name).OrderByDescending(x => x.Id).First();
-            return movie.Id;
         }
 
         public void UpdateMovie(Movie movie)

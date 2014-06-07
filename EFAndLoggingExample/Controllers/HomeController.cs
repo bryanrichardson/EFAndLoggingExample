@@ -27,8 +27,9 @@ namespace EFAndLoggingExample.Controllers
         // and returns JSON of the newly inserted movie.
         public ActionResult Insert(string movie)
         {
-            var id = _repository.InsertMovie(movie);
-            return Json(new {Id = id, Name = movie});
+            _repository.InsertMovie(movie);
+            var mov = _repository.GetMovieByName(movie).OrderByDescending(x => x.Id).First();
+            return Json(mov);
         }
 
         // This action deletes the specified movie
