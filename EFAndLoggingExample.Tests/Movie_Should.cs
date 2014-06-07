@@ -8,6 +8,12 @@ namespace EFAndLoggingExample.Tests
     [TestFixture]
     public class Movie_Should
     {
+        [SetUp]
+        public void SetUp()
+        {
+            Database.SetInitializer(new DropCreateDatabaseAlways<MovieContext>());
+        }
+
         [Test]
         public void Create_A_Movie()
         {
