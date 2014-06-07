@@ -8,8 +8,9 @@ namespace EFAndLoggingExample.Repositories
 {
     public interface IMovieRepository
     {
+        IEnumerable<Movie> GetMovies();
         IEnumerable<Movie> GetMovieByName(string name);
-        void InsertMovie(string name);
+        int InsertMovie(string name);
         void UpdateMovie(Movie movie);
         void DeleteMovie(int id);
     }

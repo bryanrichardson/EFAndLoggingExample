@@ -16,6 +16,10 @@ namespace EFAndLoggingExample
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            // Use our custom controller factory to inject the repository dependency
+            IControllerFactory factory = new CustomControllerFactory();
+            ControllerBuilder.Current.SetControllerFactory(factory);
         }
     }
 }

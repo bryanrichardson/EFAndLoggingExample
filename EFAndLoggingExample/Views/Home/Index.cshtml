@@ -1,9 +1,16 @@
-﻿@{
+﻿@model IList<EFAndLoggingExample.Models.Movie>
+@{
     ViewBag.Title = "Home Page";
 }
 
 
 
 <div class="row">
-    
+    <ul id="movies" class="col-md-12">
+        @foreach (var movie in Model)
+        {
+            <li id="movie-@movie.Id"><span id="movie-name">@movie.Name</span><span id="edit-movie" class="btn btn-default edit-movie-@movie.Id">Edit</span><span id="delete-movie" class="btn btn-default delete-movie-@movie.Id">Delete</span></li>
+        }
+    </ul>
+    <span id="add-movie" class="btn btn-primary col-md-12">Add</span>
 </div>

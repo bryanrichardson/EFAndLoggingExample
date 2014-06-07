@@ -20,6 +20,13 @@ namespace EFAndLoggingExample.Repositories
             _mailer = mailer;
         }
 
+        public IEnumerable<Movie> GetMovies()
+        {
+            var movies = _context.Movies;
+            _log.InfoFormat("Query for all movies occurred.");
+            return movies;
+        }
+
         public IEnumerable<Movie> GetMovieByName(string name)
         {
             var movies = _context.Movies.Where(x => x.Name == name);
@@ -27,11 +34,14 @@ namespace EFAndLoggingExample.Repositories
             return movies;
         }
 
-        public void InsertMovie(string name)
+        public int InsertMovie(string name)
         {
             _context.Movies.Add(new Movie() {Name = name});
             _context.SaveChanges();
             _log.InfoFormat("Movie with name {0} created!", name);
+
+            var movie = _context.Movies.Where(x => x.Name==name).OrderByDescending(x => x.Id).First();
+            return movie.Id;
         }
 
         public void UpdateMovie(Movie movie)

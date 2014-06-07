@@ -80,9 +80,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="CustomControllerFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mail\DefaultMailer.cs" />
     <Compile Include="Mail\IMailer.cs" />
     <Compile Include="Migrations\201406062319198_InitialCreate.cs" />
     <Compile Include="Migrations\201406062319198_InitialCreate.Designer.cs">
@@ -106,20 +108,21 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\_references.js" />
+    <Content Include="Scripts\lib\bootstrap.js" />
+    <Content Include="Scripts\lib\bootstrap.min.js" />
+    <None Include="Scripts\lib\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\lib\jquery-1.10.2.js" />
+    <Content Include="Scripts\lib\jquery-1.10.2.min.js" />
+    <None Include="Scripts\lib\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\lib\jquery.validate.js" />
+    <Content Include="Scripts\lib\jquery.validate.min.js" />
+    <Content Include="Scripts\lib\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\lib\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\lib\modernizr-2.6.2.js" />
+    <Content Include="Scripts\lib\respond.js" />
+    <Content Include="Scripts\lib\respond.min.js" />
+    <Content Include="Scripts\lib\_references.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -134,7 +137,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\lib\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201406062319198_InitialCreate.resx">
