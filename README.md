@@ -10,3 +10,8 @@ All tests should go green.  There are tests for the models and the repository bu
 
 The website should come up when you run the solution.  
 You can add, edit, and delete movies to the list and all calls to the controller except the initial page load are done via AJAX.
+
+Known Issues
+---------------------
+There is a bug with the AJAX where newly added movies don't get there edit and delete buttons properly wired up so you can't edit and delete
+those movies until you refresh the page.
